@@ -1,9 +1,11 @@
 package edu.icet.ecom.service;
 
 import edu.icet.ecom.dto.Customer;
-import edu.icet.ecom.entity.CustomerEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
 
 public interface CustomerService {
     void addCustomer(Customer customer);
+    List<Customer> getAllCustomers();
+
 }
