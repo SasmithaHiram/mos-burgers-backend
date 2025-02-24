@@ -21,6 +21,15 @@ public class CustomerController {
         service.addCustomer(customer);
     }
 
+    @PutMapping("/update-customer")
+    public void updateCustomer(@RequestBody Customer customer) {
+        service.updateCustomer(customer);
+    }
+    @DeleteMapping("/delete-customer")
+    public void deleteCustomer(@PathVariable Integer id) {
+        service.deleteCustomer(id);
+    }
+
     @GetMapping("/get-all-customers")
     public List<Customer> getAllCustomers() {
         return service.getAllCustomers();

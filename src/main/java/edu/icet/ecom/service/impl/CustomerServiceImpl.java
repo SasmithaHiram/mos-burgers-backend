@@ -25,6 +25,16 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public void updateCustomer(Customer customer) {
+        repository.save(mapper.map(customer, CustomerEntity.class));
+    }
+
+    @Override
+    public void deleteCustomer(Integer id) {
+        repository.deleteById(id);
+    }
+
+    @Override
     public List<Customer> getAllCustomers() {
         List<CustomerEntity> customerEntityList = repository.findAll();
 
