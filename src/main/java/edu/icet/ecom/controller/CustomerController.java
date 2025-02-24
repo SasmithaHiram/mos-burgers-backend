@@ -27,7 +27,6 @@ public class CustomerController {
     @DeleteMapping("/delete-customer/{id}")
     public void deleteCustomer(@PathVariable Integer id) {
         service.deleteCustomer(id);
-        System.out.println(id);
     }
 
     @GetMapping("/get-all-customers")
