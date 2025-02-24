@@ -12,7 +12,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin
 
-
 public class CustomerController {
     final CustomerService service;
 
@@ -25,9 +24,10 @@ public class CustomerController {
     public void updateCustomer(@RequestBody Customer customer) {
         service.updateCustomer(customer);
     }
-    @DeleteMapping("/delete-customer")
+    @DeleteMapping("/delete-customer/{id}")
     public void deleteCustomer(@PathVariable Integer id) {
         service.deleteCustomer(id);
+        System.out.println(id);
     }
 
     @GetMapping("/get-all-customers")
