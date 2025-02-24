@@ -19,6 +19,10 @@ public class ItemController {
     public void addItem(@RequestBody Item item) {
         service.addItem(item);
     }
+    @PostMapping("/update-item")
+    public void updateItem(@RequestBody Item item) {
+        service.addItem(item);
+    }
 
     @GetMapping("/get-all-items")
     public List<Item> getAllItems() {

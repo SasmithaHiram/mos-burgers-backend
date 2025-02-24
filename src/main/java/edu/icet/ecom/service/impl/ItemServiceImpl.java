@@ -25,6 +25,11 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public void updateItem(Item item) {
+        repository.save(mapper.map(item, ItemEntity.class));
+    }
+
+    @Override
     public List<Item> getAllItems() {
         List<ItemEntity> itemEntityList = repository.findAll();
 
