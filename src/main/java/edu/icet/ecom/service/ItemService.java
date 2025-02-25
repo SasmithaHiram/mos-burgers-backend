@@ -7,5 +7,6 @@ import java.util.List;
 public interface ItemService {
     void addItem(Item item);
     void updateItem(Item item);
+    void deleteItem(Integer code);
     List<Item> getAllItems();
 }

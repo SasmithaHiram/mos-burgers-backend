@@ -19,14 +19,20 @@ public class ItemController {
     public void addItem(@RequestBody Item item) {
         service.addItem(item);
     }
+
     @PostMapping("/update-item")
     public void updateItem(@RequestBody Item item) {
-        service.addItem(item);
+        service.updateItem(item);
     }
 
     @GetMapping("/get-all-items")
     public List<Item> getAllItems() {
         return service.getAllItems();
+    }
+
+    @DeleteMapping("/delete-item/{code}")
+    public void DeleteItem(@PathVariable Integer code) {
+        service.deleteItem(code);
     }
 
 }

@@ -30,6 +30,11 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public void deleteItem(Integer code) {
+        repository.deleteById(code);
+    }
+
+    @Override
     public List<Item> getAllItems() {
         List<ItemEntity> itemEntityList = repository.findAll();
 
