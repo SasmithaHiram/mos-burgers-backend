@@ -3,6 +3,7 @@ package edu.icet.ecom.controller;
 import edu.icet.ecom.dto.Customer;
 import edu.icet.ecom.service.CustomerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,12 +13,19 @@ import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin
 
-public class CustomerController {
+public class CustomerController { 
     final CustomerService service;
 
     @PostMapping("/add-customer")
     public void addCustomer(@RequestBody Customer customer) {
         service.addCustomer(customer);
+        System.out.println(customer);
+    }
+
+    @GetMapping("/search-customerById/{id}")
+    @ResponseStatus(HttpStatus.FOUND)
+    public Customer searchCustomer(@PathVariable Integer id) {
+        return service.searchCustomer(id);
     }
 
     @PutMapping("/update-customer")

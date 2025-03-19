@@ -25,6 +25,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public Customer searchCustomer(Integer id) {
+        return mapper.map(repository.findById(id), Customer.class);
+    }
+
+    @Override
     public void updateCustomer(Customer customer) {
         repository.save(mapper.map(customer, CustomerEntity.class));
     }
