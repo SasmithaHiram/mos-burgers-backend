@@ -13,19 +13,24 @@ import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin
 
-public class CustomerController { 
+public class CustomerController {
     final CustomerService service;
 
     @PostMapping("/add-customer")
     public void addCustomer(@RequestBody Customer customer) {
         service.addCustomer(customer);
-        System.out.println(customer);
     }
 
     @GetMapping("/search-customerById/{id}")
     @ResponseStatus(HttpStatus.FOUND)
     public Customer searchCustomer(@PathVariable Integer id) {
-        return service.searchCustomer(id);
+        return service.searchCustomerById(id);
+    }
+
+    @GetMapping("/search-customerByName/{name}")
+    @ResponseStatus(HttpStatus.FOUND)
+    public List<Customer> searchCustomerByName(@PathVariable String name) {
+        return service.fineCustomerByName(name);
     }
 
     @PutMapping("/update-customer")

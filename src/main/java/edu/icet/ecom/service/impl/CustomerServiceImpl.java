@@ -25,8 +25,20 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer searchCustomer(Integer id) {
+    public Customer searchCustomerById(Integer id) {
         return mapper.map(repository.findById(id), Customer.class);
+    }
+
+    @Override
+    public List<Customer> fineCustomerByName(String name) {
+        List<CustomerEntity> byName = repository.findByName(name);
+
+        List<Customer> customers = new ArrayList<>();
+
+        byName.forEach(customerEntity -> {
+            customers.add(mapper.map(customerEntity, Customer.class));
+        });
+        return customers;
     }
 
     @Override
