@@ -1,6 +1,5 @@
-package edu.icet.ecom.entity;
+package edu.icet.ecom.dto;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,16 +9,12 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Entity
-@Table(name = "item")
 
-public class ItemEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Product {
     private Integer code;
     private String name;
     private Double price;
     private String image;
     private String category;
-    
+
 }
