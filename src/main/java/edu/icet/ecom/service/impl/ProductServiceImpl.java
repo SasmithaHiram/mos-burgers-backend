@@ -29,6 +29,18 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> searchProductByName(String name) {
+        List<ProductEntity> byName = repository.findByName(name);
+
+        List<Product> products = new ArrayList<>();
+
+        byName.forEach(productEntity -> {
+            products.add(mapper.map(productEntity, Product.class));
+        });
+        return products;
+    }
+
+    @Override
     public void updateProduct(Product product) {
         repository.save(mapper.map(product, ProductEntity.class));
     }

@@ -27,6 +27,11 @@ public class ProductController {
         return service.searchProductById(id);
     }
 
+    @GetMapping("/search-productByName/{name}")
+    public List<Product> searchByName(@PathVariable String name) {
+        return service.searchProductByName(name);
+    }
+
     @PutMapping("/update-product")
     public void updateItem(@RequestBody Product product) {
         service.updateProduct(product);
