@@ -24,6 +24,7 @@ public class UserController {
     }
 
     @GetMapping("/search-userByEmail/{email}")
+    @ResponseStatus(HttpStatus.FOUND)
     public List<User> searchUserByEmail(@PathVariable String email) {
         return service.searchUserByEmail(email);
     }

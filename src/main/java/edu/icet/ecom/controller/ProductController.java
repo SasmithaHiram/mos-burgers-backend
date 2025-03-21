@@ -17,6 +17,7 @@ public class ProductController {
     final ProductService service;
 
     @PostMapping("/add-product")
+    @ResponseStatus(HttpStatus.CREATED)
     public void addItem(@RequestBody Product product) {
         service.addProduct(product);
     }
@@ -28,23 +29,27 @@ public class ProductController {
     }
 
     @GetMapping("/search-productByName/{name}")
+    @ResponseStatus(HttpStatus.FOUND)
     public List<Product> searchByName(@PathVariable String name) {
         return service.searchProductByName(name);
     }
 
     @PutMapping("/update-product")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public void updateItem(@RequestBody Product product) {
         service.updateProduct(product);
     }
 
-    @GetMapping("/get-all-product")
-    public List<Product> getAllItems() {
-        return service.getAllProduct();
-    }
-
     @DeleteMapping("/delete-product/{code}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public void DeleteItem(@PathVariable Integer code) {
         service.deleteProduct(code);
+    }
+
+    @GetMapping("/get-all-product")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Product> getAllItems() {
+        return service.getAllProduct();
     }
 
 }

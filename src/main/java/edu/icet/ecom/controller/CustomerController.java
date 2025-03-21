@@ -17,6 +17,7 @@ public class CustomerController {
     final CustomerService service;
 
     @PostMapping("/add-customer")
+    @ResponseStatus(HttpStatus.CREATED)
     public void addCustomer(@RequestBody Customer customer) {
         service.addCustomer(customer);
     }
@@ -34,16 +35,19 @@ public class CustomerController {
     }
 
     @PutMapping("/update-customer")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public void updateCustomer(@RequestBody Customer customer) {
         service.updateCustomer(customer);
     }
 
     @DeleteMapping("/delete-customer/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public void deleteCustomer(@PathVariable Integer id) {
         service.deleteCustomer(id);
     }
 
     @GetMapping("/get-all-customers")
+    @ResponseStatus(HttpStatus.OK)
     public List<Customer> getAllCustomers() {
         return service.getAllCustomers();
     }

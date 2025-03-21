@@ -31,8 +31,10 @@ public class UserServiceImpl implements UserService {
 
         byEmail.forEach(userEntity -> {
             users.add(mapper.map(userEntity, User.class));
+
         });
         return users;
+
     }
 
 }
