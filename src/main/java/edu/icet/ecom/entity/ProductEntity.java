@@ -1,5 +1,6 @@
 package edu.icet.ecom.entity;
 
+import edu.icet.ecom.util.ProductCategory;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,9 +18,12 @@ public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer code;
+    @Enumerated(EnumType.STRING)
+    @Column(name="category")
+    private ProductCategory category;
     private String name;
     private Double price;
     private String image;
-    private String category;
+
     
 }
