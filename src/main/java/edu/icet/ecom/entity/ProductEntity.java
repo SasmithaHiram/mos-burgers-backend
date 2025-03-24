@@ -18,6 +18,7 @@ public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer code;
+
     @Enumerated(EnumType.STRING)
     @Column(name="category")
     private ProductCategory category;

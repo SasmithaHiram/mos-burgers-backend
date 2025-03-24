@@ -18,7 +18,7 @@ public class ProductController {
 
     @PostMapping("/add-product")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addItem(@RequestBody Product product) {
+    public void addProduct(@RequestBody Product product) {
         service.addProduct(product);
     }
 
@@ -36,19 +36,19 @@ public class ProductController {
 
     @PutMapping("/update-product")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void updateItem(@RequestBody Product product) {
+    public void updateProduct(@RequestBody Product product) {
         service.updateProduct(product);
     }
 
     @DeleteMapping("/delete-product/{code}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void DeleteItem(@PathVariable Integer code) {
+    public void deleteProduct(@PathVariable Integer code) {
         service.deleteProduct(code);
     }
 
     @GetMapping("/get-all-product")
     @ResponseStatus(HttpStatus.OK)
-    public List<Product> getAllItems() {
+    public List<Product> getAllProdcut() {
         return service.getAllProduct();
     }
 
