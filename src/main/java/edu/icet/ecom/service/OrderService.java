@@ -8,4 +8,6 @@ import java.util.List;
 public interface OrderService {
     void placeOrder(Order order);
     List<OrderDetail> orderDetail();
+    Long getCount();
+    List<Order> getFiveOrders();
 }

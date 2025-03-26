@@ -12,8 +12,8 @@ import lombok.ToString;
 
 public class OrderDetail {
     private Integer orderDetailId;
-    private Integer productId;
+    private Product product;
     private Integer qty;
-    private Double unitPrice;
+    private Double total;
 
 }

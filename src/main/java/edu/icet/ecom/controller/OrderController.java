@@ -1,20 +1,20 @@
 package edu.icet.ecom.controller;
 
 import edu.icet.ecom.dto.Order;
+import edu.icet.ecom.service.OrderService;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/order")
 @RequiredArgsConstructor
 @CrossOrigin
 public class OrderController {
-   // private final OrderService service;
-    private final ModelMapper mapper;
-    public void addOrder(Order order) {
+    final OrderService orderService;
 
+    @PostMapping("/place-order")
+    public void placeOrder(@RequestBody Order order) {
+        orderService.placeOrder(order);
     }
+
 }

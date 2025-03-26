@@ -17,7 +17,7 @@ import lombok.ToString;
 public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer code;
+    private Integer id;
 
     @Enumerated(EnumType.STRING)
     @Column(name="category")

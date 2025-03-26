@@ -16,18 +16,17 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name="order")
+@Table(name="Orders")
 
 public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer orderId;
-    private Integer customerId;
-    private Date date;
-    private Double total;
+    private Integer id;
+
+    private String customerName;
+    private Double totalAmount;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
-    private List<OrderDetail> orderDetailList;
-
+    private List<OrderDetailEntity> orderDetails;
 }

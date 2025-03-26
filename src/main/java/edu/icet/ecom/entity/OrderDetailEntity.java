@@ -18,15 +18,14 @@ public class OrderDetailEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer orderDetailId;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "orderId", referencedColumnName = "id", nullable = false)
     private OrderEntity order;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "productId", referencedColumnName = "id", nullable = false)
-    private Integer productId;
+    private ProductEntity product;
 
     private Integer qty;
-    private Double unitPrice;
-
+    private Double total;
 }
