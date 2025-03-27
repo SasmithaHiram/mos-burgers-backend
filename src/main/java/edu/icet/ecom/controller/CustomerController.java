@@ -14,7 +14,7 @@ import java.util.List;
 @CrossOrigin
 
 public class CustomerController {
-    final CustomerService service;
+    private final CustomerService service;
 
     @PostMapping("/add-customer")
     @ResponseStatus(HttpStatus.CREATED)

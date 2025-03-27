@@ -15,8 +15,8 @@ import java.util.List;
 @RequiredArgsConstructor
 
 public class ProductServiceImpl implements ProductService {
-    final ProductRepository repository;
-    final ModelMapper mapper;
+    private final ProductRepository repository;
+    private final ModelMapper mapper;
 
     @Override
     public void addProduct(Product product) {

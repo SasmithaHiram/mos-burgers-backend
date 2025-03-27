@@ -15,8 +15,8 @@ import java.util.List;
 @RequiredArgsConstructor
 
 public class CustomerServiceImpl implements CustomerService {
-    final CustomerRepository repository;
-    final ModelMapper mapper;
+    private final CustomerRepository repository;
+    private final ModelMapper mapper;
 
     @Override
     public void addCustomer(Customer customer) {

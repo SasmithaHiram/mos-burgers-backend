@@ -20,23 +20,22 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 
 public class OrderServiceImpl implements OrderService {
-    final OrderRepository orderRepository;
-    final OrderDetailRepository orderDetailRepository;
-    final ModelMapper mapper;
+    private final OrderRepository orderRepository;
+    private final OrderDetailRepository orderDetailRepository;
+    private final ModelMapper mapper;
 
     @Transactional
-
     @Override
     public void placeOrder(Order order) {
         OrderEntity orderEntity = new OrderEntity();
         orderEntity.setCustomerName(order.getCustomerName());
         orderEntity.setTotalAmount(order.getTotalAmount());
 
-        OrderEntity save = orderRepository.save(orderEntity);
+        OrderEntity saveOrder = orderRepository.save(orderEntity);
 
         List<OrderDetailEntity> orderDetailEntities = order.getOrderDetails().stream().map(orderDetail -> {
             OrderDetailEntity orderDetailEntity = new OrderDetailEntity();
-            orderDetailEntity.setOrder(save);
+            orderDetailEntity.setOrder(saveOrder);
             orderDetailEntity.setProduct(mapper.map(orderDetail.getProduct(), ProductEntity.class));
             orderDetailEntity.setQty(orderDetail.getQty());
             orderDetailEntity.setTotal(orderDetail.getTotal());
@@ -44,7 +43,7 @@ public class OrderServiceImpl implements OrderService {
         }).collect(Collectors.toList());
 
         orderDetailRepository.saveAll(orderDetailEntities);
-        save.setOrderDetails(orderDetailEntities);
+        saveOrder.setOrderDetails(orderDetailEntities);
 
     }
 

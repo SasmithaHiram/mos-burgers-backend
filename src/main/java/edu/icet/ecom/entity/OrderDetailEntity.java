@@ -23,7 +23,7 @@ public class OrderDetailEntity {
     private OrderEntity order;
 
     @ManyToOne
-    @JoinColumn(name = "productId", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "productCode", referencedColumnName = "code", nullable = false)
     private ProductEntity product;
 
     private Integer qty;

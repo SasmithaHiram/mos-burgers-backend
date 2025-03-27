@@ -14,7 +14,7 @@ import java.util.List;
 @CrossOrigin
 
 public class ProductController {
-    final ProductService service;
+    private final ProductService service;
 
     @PostMapping("/add-product")
     @ResponseStatus(HttpStatus.CREATED)
