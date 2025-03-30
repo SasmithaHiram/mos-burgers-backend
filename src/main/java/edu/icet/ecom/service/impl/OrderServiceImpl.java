@@ -25,6 +25,7 @@ public class OrderServiceImpl implements OrderService {
     private final ModelMapper mapper;
 
     @Transactional
+
     @Override
     public void placeOrder(Order order) {
         OrderEntity orderEntity = new OrderEntity();
