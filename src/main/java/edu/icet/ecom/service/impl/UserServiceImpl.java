@@ -19,22 +19,16 @@ public class UserServiceImpl implements UserService {
     private final ModelMapper mapper;
 
     @Override
-    public void addUser(User user) {
-        repository.save(mapper.map(user, UserEntity.class));
+    public boolean isValid(User user) {
+        List<UserEntity> userEntityList = repository.findByUserName(user.getUserName());
+
+        if (userEntityList != null) {
+            for (UserEntity userEntity : userEntityList) {
+                if (user.getUserName().equals(userEntity.getUserName()) && user.getPassword().equals(userEntity.getPassword())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
-
-    @Override
-    public List<User> searchUserByEmail(String email) {
-        List<UserEntity> byEmail = repository.findByEmail(email);
-
-        List<User> users = new ArrayList<>();
-
-        byEmail.forEach(userEntity -> {
-            users.add(mapper.map(userEntity, User.class));
-
-        });
-        return users;
-
-    }
-
 }

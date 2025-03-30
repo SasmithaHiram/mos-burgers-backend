@@ -4,6 +4,7 @@ import edu.icet.ecom.dto.User;
 import edu.icet.ecom.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,16 +17,10 @@ import java.util.List;
 public class UserController {
     private final UserService service;
 
-    @PostMapping("/add-user")
+    @PostMapping("/login")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addUser(@RequestBody User user) {
-        service.addUser(user);
-    }
-
-    @GetMapping("/search-userByEmail/{email}")
-    @ResponseStatus(HttpStatus.FOUND)
-    public List<User> searchUserByEmail(@PathVariable String email) {
-        return service.searchUserByEmail(email);
+    public ResponseEntity<Boolean> login(@RequestBody User user) {
+        return ResponseEntity.ok(service.isValid(user));
     }
 
 }

@@ -31,7 +31,7 @@ public class CustomerController {
     @GetMapping("/search-customerByName/{name}")
     @ResponseStatus(HttpStatus.FOUND)
     public List<Customer> searchCustomerByName(@PathVariable String name) {
-        return service.fineCustomerByName(name);
+        return service.fineCustomerByName(name.trim().toLowerCase());
     }
 
     @PutMapping("/update-customer")
