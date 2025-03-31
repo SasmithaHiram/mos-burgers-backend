@@ -15,6 +15,7 @@ import java.util.List;
 public class Order {
     private Integer id;
     private Double totalAmount;
+    private Double receivedAmount;
     private String customerName;
     private List<OrderDetail> orderDetails;
 

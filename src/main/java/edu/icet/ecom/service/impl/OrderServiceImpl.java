@@ -32,6 +32,7 @@ public class OrderServiceImpl implements OrderService {
         OrderEntity orderEntity = new OrderEntity();
         orderEntity.setCustomerName(order.getCustomerName());
         orderEntity.setTotalAmount(order.getTotalAmount());
+        orderEntity.setReceivedAmount(order.getReceivedAmount());
 
         OrderEntity saveOrder = orderRepository.save(orderEntity);
 
