@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,17 +50,15 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderDetail> orderDetail() {
-        return List.of();
+    public List<Order> getAll() {
+        List<OrderEntity> all = orderRepository.findAll();
+
+        List<Order> orders = new ArrayList<>();
+
+        all.forEach(orderEntity -> {
+            orders.add(mapper.map(orderEntity, Order.class));
+        });
+        return orders;
     }
 
-    @Override
-    public Long getCount() {
-        return 0L;
-    }
-
-    @Override
-    public List<Order> getFiveOrders() {
-        return List.of();
-    }
 }
