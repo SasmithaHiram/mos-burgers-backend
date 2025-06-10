@@ -20,4 +20,5 @@ public class CloudinaryServiceImpl implements CloudinaryService {
         Map upload = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
         return upload.get("url").toString();
     }
+
 }

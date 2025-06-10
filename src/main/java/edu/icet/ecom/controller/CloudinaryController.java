@@ -21,7 +21,6 @@ public class CloudinaryController {
             String uploadImage = cloudinaryService.uploadImage(file);
             return ResponseEntity.ok(uploadImage);
         } catch (IOException exception) {
-            exception.printStackTrace();
             return ResponseEntity.badRequest().body("IMAGE UPLOAD FAILED: " + exception.getMessage());
         }
     }
