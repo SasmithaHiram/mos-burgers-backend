@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.data.annotation.CreatedDate;
+
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -20,5 +23,21 @@ public class CustomerEntity {
     private String name;
     private String phoneNumber;
     private String email;
+
+//    @CreatedDate
+//    @Column(updatable = false)
+//    private LocalDateTime createAt;
+//    private LocalDateTime updateAt;
+
+//    @PrePersist
+//    protected void onCreate() {
+//        createAt = LocalDateTime.now();
+//        updateAt = LocalDateTime.now();
+//    }
+
+//    @PreUpdate
+//    protected void onUpdate() {
+//        updateAt = LocalDateTime.now();
+//    }
 
 }

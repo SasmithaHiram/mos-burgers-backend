@@ -6,6 +6,12 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
+
+cloudinary:
+  cloud_name: dfqoxdaux
+  api_key: 541251548876181
+  api_secret: fWLiAcjor22gHLzoS_2zJrbj-yA
+
 
 
