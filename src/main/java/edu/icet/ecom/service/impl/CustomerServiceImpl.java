@@ -38,19 +38,26 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<Customer> fineCustomerByName(String name) {
+    public List<Customer> fineCustomerByName(String name) throws CustomerNotFoundException {
         List<CustomerEntity> byName = repository.findByName(name);
+
+        if (!byName.isEmpty()) {
+            throw new CustomerNotFoundException("Customer not found");
+        }
 
         List<Customer> customers = new ArrayList<>();
 
-        byName.forEach(customerEntity -> {
-            customers.add(mapper.map(customerEntity, Customer.class));
-        });
+        byName.forEach(customerEntity -> customers.add(mapper.map(customerEntity, Customer.class)));
         return customers;
     }
 
     @Override
     public void updateCustomer(Customer customer) {
+        Optional<CustomerEntity> isExistCustomer = repository.findByEmail(customer.getEmail());
+
+        if (!isExistCustomer.isPresent()) {
+            throw new CustomerNotFoundException("Customer not found");
+        }
         repository.save(mapper.map(customer, CustomerEntity.class));
     }
 
@@ -68,9 +75,7 @@ public class CustomerServiceImpl implements CustomerService {
         }
 
         ArrayList<Customer> customers = new ArrayList<>();
-        customerEntityList.forEach(customerEntity -> {
-            customers.add(mapper.map(customerEntity, Customer.class));
-        });
+        customerEntityList.forEach(customerEntity -> customers.add(mapper.map(customerEntity, Customer.class)));
         return customers;
     }
 
