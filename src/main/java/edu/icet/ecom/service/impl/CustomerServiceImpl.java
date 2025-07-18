@@ -2,6 +2,7 @@ package edu.icet.ecom.service.impl;
 
 import edu.icet.ecom.dto.Customer;
 import edu.icet.ecom.entity.CustomerEntity;
+import edu.icet.ecom.exception.CustomerNotFoundException;
 import edu.icet.ecom.repository.CustomerRepository;
 import edu.icet.ecom.service.CustomerService;
 import lombok.RequiredArgsConstructor;
@@ -52,8 +53,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<Customer> getAllCustomers() {
+    public List<Customer> getAllCustomers() throws CustomerNotFoundException {
         List<CustomerEntity> customerEntityList = repository.findAll();
+
+        if (customerEntityList.isEmpty()) {
+            throw new CustomerNotFoundException("Customers not found");
+        }
 
         ArrayList<Customer> customers = new ArrayList<>();
         customerEntityList.forEach(customerEntity -> {
