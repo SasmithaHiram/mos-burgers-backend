@@ -55,6 +55,14 @@ public class CustomerServiceImpl implements CustomerService {
     public List<Customer> getAllCustomers() {
         List<CustomerEntity> customerEntityList = repository.findAll();
 
+        try {
+            if (customerEntityList.size()>0) {
+                System.out.println("Found Books");
+            }
+        } catch (NullPointerException exception) {
+            System.out.println(exception.getMessage());
+        }
+
         ArrayList<Customer> customers = new ArrayList<>();
         customerEntityList.forEach(customerEntity -> {
             customers.add(mapper.map(customerEntity, Customer.class));
