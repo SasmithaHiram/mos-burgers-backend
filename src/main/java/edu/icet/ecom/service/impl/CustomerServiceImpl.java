@@ -2,6 +2,7 @@ package edu.icet.ecom.service.impl;
 
 import edu.icet.ecom.dto.Customer;
 import edu.icet.ecom.entity.CustomerEntity;
+import edu.icet.ecom.exception.CustomerAlreadyFoundException;
 import edu.icet.ecom.exception.CustomerNotFoundException;
 import edu.icet.ecom.repository.CustomerRepository;
 import edu.icet.ecom.service.CustomerService;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +22,12 @@ public class CustomerServiceImpl implements CustomerService {
     private final ModelMapper mapper;
 
     @Override
-    public void addCustomer(Customer customer) {
+    public void addCustomer(Customer customer) throws CustomerAlreadyFoundException {
+        Optional<CustomerEntity> existingCustomer = repository.findByEmail(customer.getEmail());
+
+        if (existingCustomer.isPresent()) {
+            throw new CustomerAlreadyFoundException("A customer already exists");
+        }
         repository.save(mapper.map(customer, CustomerEntity.class));
 
     }
