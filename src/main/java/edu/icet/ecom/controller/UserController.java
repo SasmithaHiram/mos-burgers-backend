@@ -18,9 +18,21 @@ public class UserController {
     private final UserService service;
 
     @PostMapping("/login")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Boolean> login(@RequestBody User user) {
         return ResponseEntity.ok(service.isValid(user));
+    }
+
+    @PostMapping("/create")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<Boolean> create(@RequestBody User user) {
+        boolean isCreated = service.create(user);
+
+        if (isCreated) {
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
     }
 
 }

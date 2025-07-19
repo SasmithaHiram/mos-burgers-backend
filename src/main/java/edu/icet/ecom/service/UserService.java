@@ -5,6 +5,6 @@ import edu.icet.ecom.dto.User;
 import java.util.List;
 
 public interface UserService {
-    boolean isValid(User user);
-
+    Boolean isValid(User user);
+    Boolean create(User user);
 }

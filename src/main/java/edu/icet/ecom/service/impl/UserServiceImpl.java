@@ -6,6 +6,7 @@ import edu.icet.ecom.repository.UserRepository;
 import edu.icet.ecom.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,9 +18,10 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private final UserRepository repository;
     private final ModelMapper mapper;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public boolean isValid(User user) {
+    public Boolean isValid(User user) {
         List<UserEntity> userEntityList = repository.findByUserName(user.getUserName());
 
         if (userEntityList != null) {
@@ -30,5 +32,16 @@ public class UserServiceImpl implements UserService {
             }
         }
         return false;
+    }
+
+    @Override
+    public Boolean create(User user) {
+        UserEntity userEntity = new UserEntity();
+
+        userEntity.setUserName(user.getUserName());
+        userEntity.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+
+        repository.save(userEntity);
+        return true;
     }
 }
