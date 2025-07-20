@@ -1,4 +1,9 @@
 spring:
+  security:
+    user:
+      name: Sasmitha
+      password: 1234
+
   datasource:
     url: jdbc:mysql://localhost:3306/mos_burgerss
     username: root
