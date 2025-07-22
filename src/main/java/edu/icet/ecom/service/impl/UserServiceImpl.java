@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
 
         if (userEntityList != null) {
             for (UserEntity userEntity : userEntityList) {
-                if (user.getUserName().equals(userEntity.getUserName()) && user.getPassword().equals(userEntity.getPassword())) {
+                if (bCryptPasswordEncoder.matches(user.getPassword(), userEntity.getPassword())) {
                     return true;
                 }
             }
