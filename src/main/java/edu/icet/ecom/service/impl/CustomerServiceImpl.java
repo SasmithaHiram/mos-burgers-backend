@@ -74,9 +74,9 @@ public class CustomerServiceImpl implements CustomerService {
             throw new CustomerNotFoundException("Customers not found");
         }
 
-        ArrayList<Customer> customers = new ArrayList<>();
-        customerEntityList.forEach(customerEntity -> customers.add(mapper.map(customerEntity, Customer.class)));
-        return customers;
+        return customerEntityList.stream()
+                .map(customerEntity -> mapper.map(customerEntity, Customer.class))
+                .toList();
     }
 
 }
