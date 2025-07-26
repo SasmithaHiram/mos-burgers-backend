@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -34,9 +35,7 @@ public class ProductServiceImpl implements ProductService {
 
         List<Product> products = new ArrayList<>();
 
-        byName.forEach(productEntity -> {
-            products.add(mapper.map(productEntity, Product.class));
-        });
+        byName.forEach(productEntity -> products.add(mapper.map(productEntity, Product.class)));
         return products;
     }
 
@@ -54,11 +53,19 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getAllProduct() {
         List<ProductEntity> productEntityList = repository.findAll();
 
-        ArrayList<Product> products = new ArrayList<>();
-        productEntityList.forEach(productEntity -> {
-            products.add(mapper.map(productEntity, Product.class));
-        });
-        return products;
+        return productEntityList.stream()
+                .map(productEntity -> mapper.map(productEntity, Product.class))
+                .toList();
     }
 
+    @Override
+    public List<Product> getBurgers() {
+        List<ProductEntity> productEntityList = repository.findAll();
+
+        return productEntityList.stream()
+                .filter(Objects::nonNull)
+                .filter(productEntity -> productEntity.getCategory().name().equals("BURGER"))
+                .map(productEntity -> mapper.map(productEntity, Product.class))
+                .toList();
+    }
 }
