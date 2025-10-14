@@ -1,0 +1,38 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 197719323189-v61a99j959ie6dgnpd5ak2omocqu0b8h.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+              - email
+              - openid
+              - profile
+        provider:
+          google:
+            authorization-uri: https://accounts.google.com/o/oauth2/v2/auth
+            token-uri: https://www.googleapis.com/oauth/v4/token
+            user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
+            user-name-attribute: sub
+    user:
+      name: Sasmitha
+      password: 1234
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/mos_burgers
+    username: root
+    password: 1234
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+cloudinary:
+  cloud_name: dfqoxdaux
+  api_key: 541251548876181
+  api_secret: fWLiAcjor22gHLzoS_2zJrbj-yA
+
+
+
