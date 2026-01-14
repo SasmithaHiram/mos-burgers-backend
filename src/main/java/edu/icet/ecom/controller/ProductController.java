@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/products")
 @RequiredArgsConstructor
 @CrossOrigin
 
@@ -46,7 +46,7 @@ public class ProductController {
         service.deleteProduct(code);
     }
 
-    @GetMapping("/get-all")
+    @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
     public List<Product> getAllProdcut() {
         return service.getAllProduct();

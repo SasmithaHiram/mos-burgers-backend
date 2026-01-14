@@ -22,13 +22,13 @@ public class UserServiceImpl implements UserService {
     public Boolean isValid(User user) {
         List<UserEntity> userEntityList = repository.findByUserName(user.getUserName());
 
-//        if (userEntityList != null) {
-//            for (UserEntity userEntity : userEntityList) {
-//                if (bCryptPasswordEncoder.matches(user.getPassword(), userEntity.getPassword())) {
-//                    return true;
-//                }
-//            }
-//        }
+        if (userEntityList != null) {
+            for (UserEntity userEntity : userEntityList) {
+                if (user.getPassword().equals(userEntity.getPassword())) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
